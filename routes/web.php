@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\Admin\AdminsController;
+use App\Http\Controllers\Admin\ContactsController;
 
 
 Route::get('/', function () {
@@ -25,3 +26,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
 
 //ადმინისტრატორების დამატება
 Route::resource('admins', AdminsController::class);
+
+//საკონტაქტო ინფ გვერდი
+Route::resource('contacts', ContactsController::class, ['only' => ['edit','update']]);
+//საკ ინფორმაციის შენახვა ქეშში
+Route::get('/contacts/cache', [ContactsController::class, 'cache'])->name('contacts.cache');

@@ -53,6 +53,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 ადმინისტრატორები
                             </a>
+                            <a class="nav-link" href="{{ route('contacts.edit', 1) }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
+                                საკონტაქტო ინფორმაცია
+                            </a>
                         </div>
                         
                     </div>
