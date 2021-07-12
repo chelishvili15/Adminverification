@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\ContactsController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::get('/', function () {
@@ -31,3 +32,12 @@ Route::resource('admins', AdminsController::class);
 Route::resource('contacts', ContactsController::class, ['only' => ['edit','update']]);
 //საკ ინფორმაციის შენახვა ქეშში
 Route::get('/contacts/cache', [ContactsController::class, 'cache'])->name('contacts.cache');
+
+//ორენოვანი მარშუტი
+Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+   
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    
+});
